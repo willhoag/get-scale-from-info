@@ -1,0 +1,61 @@
+{
+  "name": "get-scale-from-info",
+  "description": "Calculate the size and position of scaling (uniformly or not) on multiple axis' from any point. This works well for any system that calculates from the top or left, like your browser's dom!",
+  "version": "1.0.0",
+  "author": {
+    "name": "Will Hoag",
+    "email": "dev@willhoag.com",
+    "url": "https://github.com/willhoag"
+  },
+  "bugs": {
+    "url": "https://github.com/willhoag/get-scale-from-info/issues"
+  },
+  "dependencies": {
+    "get-single-axis-scale-from-info": "^1.0.1",
+    "obj-merge": "0.0.4",
+    "split-props": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babelify": "^6.1.3",
+    "browserify": "^11.0.0",
+    "onchange": "^2.0.0",
+    "phantomjs": "^1.9.17",
+    "standard": "*",
+    "tap-spec": "^4.0.2",
+    "tape": "^4.0.1",
+    "tape-run": "^1.0.0",
+    "watchify": "^3.4.0"
+  },
+  "homepage": "git://github.com/willhoag/get-scale-from-info.git",
+  "keywords": [
+    "scale",
+    "zoom",
+    "info",
+    "top",
+    "left"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "devhoag",
+      "email": "dev@willhoag.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/willhoag/get-scale-from-info.git"
+  },
+  "scripts": {
+    "build:browser": "browserify -t babelify --standalone getScaleFromInfo index.es6 --extension .es6 > browser.js",
+    "build:node": "babel index.es6 > index.js",
+    "build": "npm run build:node && npm run build:browser",
+    "prepublish": "npm test && npm run build",
+    "lint": "standard **/*.es6",
+    "test:browser": "npm run lint && browserify -t babelify --extension .es6 test.es6 | tape-run | tap-spec",
+    "test:node": "npm run lint && babel-node test.es6 | tap-spec",
+    "test": "npm run test:node",
+    "test:watch": "onchange '*.es6' -- npm test"
+  }
+}
